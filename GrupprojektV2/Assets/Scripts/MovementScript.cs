@@ -77,7 +77,14 @@ public class MovementScript : MonoBehaviour
         Dashing = true;
         float OriginalGravity = RB.gravityScale;
         RB.gravityScale = 0f;
-        RB.velocity = new Vector2(transform.localScale.x * DashingPower, 0f);
+        if (Controller.m_FacingRight)
+        {
+            RB.velocity = new Vector2(transform.localScale.x * DashingPower, 0f);
+        }
+        else
+        {
+            RB.velocity = new Vector2(transform.localScale.x * -DashingPower, 0f);
+        }
         TR.emitting = true;
         yield return new WaitForSeconds(DashingTime);
         TR.emitting = false;
